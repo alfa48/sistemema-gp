@@ -6,3 +6,8 @@
 SELECT *
 FROM view_detentos_cela
 WHERE numero_cela = 2;
+ 
+-- Consulta na view para a visitas
+SELECT *
+FROM view_visitantes_detento
+WHERE id_detento = 3;

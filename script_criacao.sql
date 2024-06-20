@@ -28,7 +28,7 @@ CREATE TABLE `detento` (
   `num_detento` int NOT NULL,
   `data_entrada` date NOT NULL,
   `data_saida` date NOT NULL,
-  `cela_id` int NOT NULL,
+  `cela_id` int,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`cela_id`) REFERENCES `cela`(`id`)
 );
@@ -42,7 +42,7 @@ CREATE TABLE `detento` (
 CREATE TABLE `funcionario` (
   `id` int NOT NULL auto_increment,
   `nome` varchar(50) NOT NULL,
-  `cargo` varchar(25) DEFAULT NULL,
+  `cargo` enum('gestao','guarda', 'medico') NOT NULL,
   `salario` float DEFAULT NULL,
   `data_contrat` date NOT NULL DEFAULT (current_date()),
    PRIMARY KEY (`id`)
@@ -54,14 +54,23 @@ CREATE TABLE `funcionario` (
 -- Estrutura da tabela `resgistro`
 --
 
-CREATE TABLE `resgistro` (
+CREATE TABLE `registro` (
   `id` int NOT NULL auto_increment,
   `data` date NOT NULL DEFAULT (current_date()),
-  `tipo_moviment` enum('entrada','saida', 'trasferencia') NOT NULL,
+  `presidio` varchar(20) DEFAULT null,
+  `destino` int DEFAULT NULL,
+  `tipo_resgistro` enum('entrada','soltura', 'transferencia') NOT NULL,
   `id_detento` int NOT NULL,
   `id_funcionario` int NOT NULL,
-  PRIMARY KEY (`id`)
+  `origem` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`id_funcionario`) REFERENCES `funcionario` (`id`),
+  FOREIGN KEY (`id_detento`) REFERENCES `detento` (`id`),
+  FOREIGN KEY (`origem`) REFERENCES `cela` (`id`),
+  FOREIGN KEY (`destino`) REFERENCES `cela` (`id`)
 );
+
+-- criar um trigger que ao criar um registro se o tipo_registro for trasferencia e presidio for null, nao permita que origem e destino seja null
 
 -- --------------------------------------------------------
 

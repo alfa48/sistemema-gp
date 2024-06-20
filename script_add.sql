@@ -33,6 +33,8 @@ INSERT INTO `detento` (`nome`, `data_nascimento`, `num_detento`, `data_entrada`,
 ('Beatriz Rocha', '1993-08-12', 10, '2024-06-10', '2025-06-10', 2),
 ('Rafael Nunes', '1981-12-05', 11, '2024-06-11', '2025-06-11', 2),
 ('Fernanda Silva', '1989-09-23', 12, '2024-06-12', '2025-06-12', 2);
+INSERT INTO detento (nome, data_nascimento, num_detento, data_entrada, data_saida, cela_id)
+VALUES ('João Silva', '1990-01-15', 12345, '2023-03-10', '2024-06-19', 1);
 
 select * from cela;
 
@@ -51,3 +53,29 @@ VALUES
 -- ('Visitante 4', 'Parente', '2024-06-20', 3),
 ('Visitante 5', 'Conhecido', '2024-06-20', 3);
 select * from visitante;
+
+-- add funcionario
+
+-- Inserir funcionário com cargo de gestão
+INSERT INTO `funcionario` (`nome`, `cargo`, `salario`, `data_contrat`)
+VALUES ('Funcionário Gestão', 'gestao', 5000.00, current_date()),
+-- Inserir funcionário com cargo de guarda
+	('Funcionário Guarda 1', 'guarda', 3000.00, current_date()),
+-- Inserir funcionário com cargo de guarda
+	('Funcionário Guarda 2', 'guarda', 3000.00, current_date()),
+-- Inserir funcionário com cargo de médico
+	('Funcionário Médico', 'medico', 6000.00, current_date());
+    
+    select * from funcionario;
+-- registro
+-- Supondo que o id do Funcionário gestao faça um registro
+ INSERT INTO `registro` (`data`, `destino`, `tipo_resgistro`, `id_detento`, `id_funcionario`)
+VALUES (current_date(), 1, 'transferencia', 2, 1);
+
+-- 13 Supondo que o id do Funcionário gestao faça um registro de soltura
+ INSERT INTO `registro` (`data`, `destino`, `tipo_resgistro`, `id_detento`, `id_funcionario`)
+VALUES (current_date(), null, 'soltura', 13, 1);
+
+select * from detento;
+select * from cela;
+select * from registro;
