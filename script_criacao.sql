@@ -23,7 +23,7 @@ CREATE TABLE `cela` (
 CREATE TABLE `detento` (
   `id` int NOT NULL auto_increment,
   `nome` varchar(50) NOT NULL,
-  `sexo` char	NOT NULL,
+  `sexo` char	NOT NULL default 'M',
   `data_nascimento` date NOT NULL,
   `num_detento` int NOT NULL,
   `data_entrada` date NOT NULL,
@@ -73,6 +73,8 @@ CREATE TABLE `visitante` (
   `id` int NOT NULL auto_increment,
   `nome` varchar(60) NOT NULL,
   `relacao_detento` varchar(60) NOT NULL,
+   `data_entrada` date NOT NULL DEFAULT (current_date()),
   `id_detento` int NOT NULL, -- DETENTO A SER VISITADO
-   PRIMARY KEY (`id`)
+   PRIMARY KEY (`id`),
+   FOREIGN KEY (`id_detento`) REFERENCES `detento`(`id`)
 );

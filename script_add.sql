@@ -41,3 +41,13 @@ INSERT INTO `detento` (`nome`, `data_nascimento`, `num_detento`, `data_entrada`,
 -- ('Paulo Santos', '1984-03-10', 13, '2024-06-13', '2025-06-13', 2),
 ('Juliana Ferreira', '1991-07-19', 14, '2024-06-14', '2025-06-14', 2);
 select * from cela;
+
+-- visitante para o detento 3
+INSERT INTO `visitante` (`nome`, `relacao_detento`, `data_entrada`, `id_detento`)
+VALUES
+('Visitante 1', 'Amigo', '2024-06-20', 3),
+('Visitante 2', 'Familiar', '2024-06-20', 3),
+('Visitante 3', 'Colega', '2024-06-20', 3),
+-- ('Visitante 4', 'Parente', '2024-06-20', 3),
+('Visitante 5', 'Conhecido', '2024-06-20', 3);
+select * from visitante;
